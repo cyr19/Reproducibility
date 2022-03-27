@@ -24,9 +24,8 @@ python reproduce_17.py  --metric moverscore --model original
 ```
 cd WMT15-16_Bary
 wget https://github.com/AIPHES/emnlp19-moverscore/releases/download/0.6/MNLI_BERT.zip
-mv MNLI_BERT.zip tmp.zip
-unzip tmp.zip -d bert-mnli
-rm tmp.zip
+unzip MNLI_BERT.zip -d bert-mnli
+rm MNLI_BERT.zip
 
 python reproduce_1516.py  --metric bertscore --model bert-base-uncased --dataset 15
 python reproduce_1516.py  --metric moverscore --model bert-base-uncased --dataset 15
