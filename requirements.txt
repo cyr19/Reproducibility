@@ -1,0 +1,7 @@
+pyemd=0.5.1
+scipy=1.7.1
+torch=1.9.1
+tensorflow=2.6.0
+transformers=4.16.2
+truecase=0.0.14
+mosestokenizer=1.1.0
