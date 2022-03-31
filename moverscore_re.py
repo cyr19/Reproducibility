@@ -29,7 +29,7 @@ class MoverScorer:
 
     def __init__(
             self,
-            model = 'original',
+            model = 'nli',
             batch_size = 128,
             nthread = 4,
             idf = False,
@@ -48,8 +48,8 @@ class MoverScorer:
             self.device = "cuda" if torch.cuda.is_available() else "cpu"
         else:
             self.device = device
-        #print(self.device)
-        if model == 'original':
+
+        if model == 'nli':
             USERHOME = os.path.expanduser(".")
             MOVERSCORE_DIR = os.environ.get('MOVERSCORE', os.path.join(USERHOME, '.moverscore'))
 

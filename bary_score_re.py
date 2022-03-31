@@ -62,13 +62,13 @@ class BaryScoreMetric:
         """
         Loading and initializing the chosen model and tokenizer
         """
-        if self.model_name != 'original':
+        if self.model_name != 'nli':
             tokenizer = AutoTokenizer.from_pretrained('{}'.format(self.model_name))
             model = AutoModelForMaskedLM.from_pretrained('{}'.format(self.model_name))
         else:
 
             model_dir = 'bert-mnli/'
-            print(os.path.exists(model_dir))
+            assert os.path.exists(model_dir)
             tokenizer = AutoTokenizer.from_pretrained(model_dir,
                                                         config=AutoConfig.from_pretrained(model_dir + "config.json"),
                                                         model_max_length=512)
