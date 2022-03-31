@@ -7,7 +7,7 @@ from math import log
 from collections import defaultdict, Counter
 from transformers import AutoModelForMaskedLM, AutoTokenizer, AutoConfig
 import os
-import gdown
+#import gdown
 
 class BaryScoreMetric:
     def __init__(self, model_name="bert-base-uncased", last_layers=5, use_idfs=True, sinkhorn_ref=0.01, batch_size=128):
@@ -66,19 +66,12 @@ class BaryScoreMetric:
             tokenizer = AutoTokenizer.from_pretrained('{}'.format(self.model_name))
             model = AutoModelForMaskedLM.from_pretrained('{}'.format(self.model_name))
         else:
-            '''
-            model_dir = 'bert-mnli/'
-            #print(os.path.exists(model_dir))
-            if not os.path.exists(model_dir):
-                url = r'https://drive.google.com/drive/folders/1mPHO-U4NjINFwCQQ5mJDnvYEKV4pbCSp?usp=sharing'
-                gdown.download_folder(url)
-            print(os.path.exists(model_dir))
-            '''
+
             model_dir = 'bert-mnli/'
             print(os.path.exists(model_dir))
             tokenizer = AutoTokenizer.from_pretrained(model_dir,
-                                                          config=AutoConfig.from_pretrained(model_dir + "config.json"))
-            #tokenizer.max_length = 512
+                                                        config=AutoConfig.from_pretrained(model_dir + "config.json"),
+                                                        model_max_length=512)
             model = AutoModelForMaskedLM.from_pretrained(model_dir)
 
 
@@ -88,38 +81,21 @@ class BaryScoreMetric:
         self.tokenizer = tokenizer
         self.model = model
 
-    def score(self, hyps, refs, idf_hypos=None, idf_ref=None):
+    def score(self, hyps, refs):
         """
         Added batch computation.
         """
 
-        #scores = defaultdict(list)
+
         scores = []
 
-        '''
-        for batch_start in range(0, len(refs), self.batch_size):
-            batch_refs = refs[batch_start: batch_start + self.batch_size]
-            batch_hyps = hyps[batch_start: batch_start + self.batch_size]
-
-            batch_scores = self.evaluate_batch(batch_hyps, batch_refs, idf_hyps=idf_hypos, idf_ref=idf_ref)
-
-            #for k,v in batch_scores.items():
-            #    scores[k].extend(v)
-            scores.extend(batch_scores)
-        #print(len(refs))
-        #print(len(scores))
-        '''
         batched_candidates = [hyps[i:i + self.batch_size] for i in range(0, len(hyps), self.batch_size)]
         batched_references = [refs[i:i + self.batch_size] for i in range(0, len(hyps), self.batch_size)]
 
         for golden_batch, candidate_batch in zip(batched_references, batched_candidates):
             preds = self.evaluate_batch(candidate_batch, golden_batch)
-            #print(type(preds))
-            #print(type(preds[0]))
             scores.extend(preds)
-            #print(len(preds))
-            #print(len(scores))
-        #print("fffff: {}".format(len(scores)))
+
         return scores
 
     def evaluate_batch(self, batch_hyps, batch_refs, idf_hyps=None, idf_ref=None):
@@ -264,7 +240,7 @@ class BaryScoreMetric:
             "W": wasserstein_distance,
 
         }
-        # Disabled scores from Sinkhorn distance
+        # skip Sinkhorn distance
         '''
         for reg in [10, 1, 5, 1, 0.1, 0.5, 0.01, 0.001]:
             wasserstein_sinkhorn = ot.bregman.sinkhorn2(weights_first_barycenter, weights_second_barycenter, C,
