@@ -68,8 +68,8 @@ python reproduce_1516.py  --metric moverscore --model nli --dataset 16
 python reproduce_1516.py  --metric moverscore --model bert-base-uncased --dataset 16
 ```
 
-## Clarification
-### Regarding metric implementation
+
+## Regarding metric implementation
 We did some small change based on the original metric implementation to easier run them in our experiments.
 E.g., added batch computation for BaryScore (line 84 in bary_score_re.py), model choice for MoverScore (line 52 in moverscore_re.py), etc. Those changes won't affect the metric performance.
 
@@ -81,7 +81,7 @@ The sources of the original implementation are:
 
 **bary_score_re.py**: https://github.com/PierreColombo/nlg_eval_via_simi_measures/blob/main/bary_score.py
 
-### Regarding evaluation scripts:
+## Regarding evaluation scripts:
 Similar to the metric implementation, we slightly modified the code based on the original:
 
 **reproduce_18.py** in WMT18_BERT: 
