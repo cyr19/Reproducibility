@@ -70,7 +70,7 @@ python reproduce_1516.py  --metric moverscore --model bert-base-uncased --datase
 
 ## Clarification
 ### Regarding metric implementation
-We did some small change based on the original metric implementation to better run them in our experiments.
+We did some small change based on the original metric implementation to easier run them in our experiments.
 E.g., added batch computation for BaryScore (line 84 in bary_score_re.py), model choice for MoverScore (line 52 in moverscore_re.py), etc. Those changes won't affect the metric performance.
 
 The sources of the original implementation are:
