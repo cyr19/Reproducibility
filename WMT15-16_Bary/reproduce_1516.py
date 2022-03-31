@@ -7,15 +7,11 @@ import pandas as pd
 from matplotlib import rcParams
 from collections import defaultdict
 import sys
-sys.path.append('../')
-#from bary_score import BaryScoreMetric
-
-import argparse
-import sys
 sys.path.insert(0,'..')
+import argparse
+
 from moverscore_re import MoverScorer
-from bary_score_1718 import BaryScoreMetric
-#from bary_score import BaryScoreMetric
+from bary_score_re import BaryScoreMetric
 from bert_score.scorer import BERTScorer
 import moverscore_re
 
@@ -69,38 +65,23 @@ for i in tqdm(range(len(lps))):
     if isinstance(scorer, BERTScorer):
         scores = scorer.score(sentences, refs, refs)[2]  # 'F1'
     if isinstance(scorer, BaryScoreMetric):
-        scorer.prepare_idfs(refs, sentences)
-        scores = scorer.score(refs,sentences)
-        '''
+
         scores = []
-        scores = defaultdict(list)
 
         scorer.prepare_idfs(refs, sentences)
 
         for k, v in tqdm(all_data.items()):
 
-            scorer.prepare_idfs(refs, sentences)
             ref = v['references_sentences']
             sentence = v['system']['wmt{}'.format(args.dataset)]['generated_sentence']
 
-            
             score = scorer.evaluate_batch(ref, sentence)[0]
             scores.append(score)
-            
-            scores_s = scorer.evaluate_batch(ref, sentence)
-            #print(scores_s)
-            for score, value in scores_s.items():
-                scores[score].append(value[0])
-            #print(scores)
-        scores = scores['baryscore_W']
-        
-        #scores_1 = scorer.score(refs, sentences)
-        #scores = [i[0] for i in scores]
 
-        for s1, s2 in zip(scores, scores_1):
-            print('{} vs. {}'.format(s1, s2))
-            print(s1==s2)
-        '''
+
+
+
+
 
     c = stats.pearsonr(human, scores)[0]
     results[data_type]['pearson'] = "%.6f" % c
@@ -113,7 +94,7 @@ for i in tqdm(range(len(lps))):
 
 print(args.metric)
 df = pd.DataFrame.from_dict(results)
-df.to_csv('{}_{}_{}_ori'.format(args.dataset, args.metric,args.model))
+df.to_csv('{}_{}_{}'.format(args.dataset, args.metric,args.model))
 print(df)
 
 

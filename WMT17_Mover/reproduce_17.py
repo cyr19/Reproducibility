@@ -3,7 +3,7 @@ import argparse
 import sys
 sys.path.insert(0,'..')
 from moverscore_re import MoverScorer
-from bary_score_1718 import BaryScoreMetric
+from bary_score_re import BaryScoreMetric
 from bert_score.scorer import BERTScorer
 import moverscore_re
 

@@ -5,18 +5,15 @@ import os
 import torch
 import sys
 sys.path.insert(0, "..")
-sys.path.insert(1, "...")
-#print(sys.path)
 
 from tqdm.auto import tqdm
 from collections import defaultdict
 from moverscore_re import MoverScorer
-from bary_score_1718 import BaryScoreMetric
+from bary_score_re import BaryScoreMetric
 from bert_score.scorer import BERTScorer
 import moverscore_re
 
 wmt18_sys_to_lang_pairs = ['cs-en', 'de-en', 'et-en', 'fi-en', 'ru-en', 'tr-en', 'zh-en']
-#wmt18_sys_to_lang_pairs = ['cs-en']
 wmt18_sys_from_lang_pairs = ['en-cs', 'en-de', 'en-et', 'en-fi', 'en-ru', 'en-tr', 'en-zh']
 wmt18_sys_lang_pairs = wmt18_sys_to_lang_pairs + wmt18_sys_from_lang_pairs
 
@@ -94,6 +91,7 @@ def get_wmt18_seg_bert_score(lang_pair, scorer, cache=False, from_en=True):
         refs, cand_better, cand_worse = get_wmt18_seg_data(lang_pair)
 
         cands = list(set(cand_worse).union(set(cand_better)))
+
         if isinstance(scorer, BERTScorer):
             scorer.compute_idf(refs)
             scores_better = scorer.score(cand_better, refs)[2]
@@ -102,6 +100,7 @@ def get_wmt18_seg_bert_score(lang_pair, scorer, cache=False, from_en=True):
             scorer.prepare_idfs(refs,cands)
             scores_better = scorer.score(refs, cand_better)
             scores_worse = scorer.score(refs, cand_worse)
+
         if isinstance(scorer, MoverScorer):
             scorer._idf_dict = moverscore_re.get_idf_dict(cands, scorer._tokenizer), moverscore_re.get_idf_dict(refs, scorer._tokenizer)
             scores_better = scorer.score(refs, cand_better)
