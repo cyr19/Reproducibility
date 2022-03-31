@@ -20,6 +20,7 @@ python reproduce_18.py  --metric baryscore
 python reproduce_18.py  --metric moverscore
 python reproduce_18.py   --metric bertscore
 ```
+
 ### Reproduction on WMT17
 This folder contains the reproduction resources from [Zhao et al., 2019](https://arxiv.org/pdf/1909.02622.pdf):
 
@@ -74,26 +75,26 @@ E.g., added batch computation for BaryScore (line 84 in bary_score_re.py), model
 
 The sources of the original implementation are:
 
-bert_score: https://github.com/Tiiiger/bert_score/tree/master/bert_score
+**bert_score**: https://github.com/Tiiiger/bert_score/tree/master/bert_score
 
-moverscore_re.py: https://github.com/AIPHES/emnlp19-moverscore/blob/master/moverscore.py
+**moverscore_re.py**: https://github.com/AIPHES/emnlp19-moverscore/blob/master/moverscore.py
 
-bary_score_re.py: https://github.com/PierreColombo/nlg_eval_via_simi_measures/blob/main/bary_score.py
+**bary_score_re.py**: https://github.com/PierreColombo/nlg_eval_via_simi_measures/blob/main/bary_score.py
 
 ### Regarding evaluation scripts:
 Similar to the metric implementation, we slightly modified the code based on the original:
 
-reproduce_18.py in WMT18_BERT: 
+**reproduce_18.py** in WMT18_BERT: 
 
 https://github.com/Tiiiger/bert_score/blob/master/reproduce/get_wmt18_seg_results.py
 
-reproduce_17.py, mt_utils.py and wmt_eval.py in WMT17_Mover: 
+**reproduce_17.py, mt_utils.py and wmt_eval.py** in WMT17_Mover: 
 
 https://github.com/AIPHES/emnlp19-moverscore/blob/master/examples/run_MT.py 
 
 https://github.com/AIPHES/emnlp19-moverscore/blob/master/examples/mt_utils.py
 
-reproduce_1516.py in WMT15-16_Bary:
+**reproduce_1516.py** in WMT15-16_Bary:
 
 https://github.com/PierreColombo/nlg_eval_via_simi_measures/blob/main/raw_score/score_analysis.ipynb
 
