@@ -81,7 +81,7 @@ The sources of the original implementation are:
 
 **bary_score_re.py**: https://github.com/PierreColombo/nlg_eval_via_simi_measures/blob/main/bary_score.py
 
-## Regarding evaluation scripts:
+## Regarding evaluation scripts
 Similar to the metric implementation, we slightly modified the code based on the original:
 
 **reproduce_18.py** in WMT18_BERT: 
