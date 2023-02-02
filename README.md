@@ -1,6 +1,6 @@
 # Reproducibility Issues for BERT-based Evaluation Metrics
 
-This repo contains the main code and data for our EMNLP 2022 paper [Reproducibility Issues for BERT-based Evaluation Metrics]().
+This repo contains the main code and data for our EMNLP 2022 paper [Reproducibility Issues for BERT-based Evaluation Metrics](https://aclanthology.org/2022.emnlp-main.192/).
 
 
 ## Citation:
