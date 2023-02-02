@@ -5,17 +5,25 @@ This repo contains the main code and data for our EMNLP 2022 paper [Reproducibil
 
 ## Citation:
 ```angular2html
-@article{chen2022reproducibility,
-  title={Reproducibility Issues for BERT-based Evaluation Metrics},
-  author={Chen, Yanran and Belouadi, Jonas and Eger, Steffen},
-  journal={arXiv preprint arXiv:2204.00004},
-  year={2022}
+@inproceedings{chen-etal-2022-reproducibility,
+    title = "Reproducibility Issues for {BERT}-based Evaluation Metrics",
+    author = "Chen, Yanran  and
+      Belouadi, Jonas  and
+      Eger, Steffen",
+    booktitle = "Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing",
+    month = dec,
+    year = "2022",
+    address = "Abu Dhabi, United Arab Emirates",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.emnlp-main.192",
+    pages = "2965--2989",
+    abstract = "Reproducibility is of utmost concern in machine learning and natural language processing (NLP). In the field of natural language generation (especially machine translation), the seminal paper of Post (2018) has pointed out problems of reproducibility of the dominant metric, BLEU, at the time of publication. Nowadays, BERT-based evaluation metrics considerably outperform BLEU. In this paper, we ask whether results and claims from four recent BERT-based metrics can be reproduced. We find that reproduction of claims and results often fails because of (i) heavy undocumented preprocessing involved in the metrics, (ii) missing code and (iii) reporting weaker results for the baseline metrics. (iv) In one case, the problem stems from correlating not to human scores but to a wrong column in the csv file, inflating scores by 5 points. Motivated by the impact of preprocessing, we then conduct a second study where we examine its effects more closely (for one of the metrics). We find that preprocessing can have large effects, especially for highly inflectional languages. In this case, the effect of preprocessing may be larger than the effect of the aggregation mechanism (e.g., greedy alignment vs. Word Mover Distance).",
 }
 ```
 > **Abstract**: 
 > Reproducibility is of utmost concern in machine learning and natural language processing (NLP). In the field of natural language generation (especially machine translation), the seminal paper of [Post (2018)](https://aclanthology.org/W18-6319/) has pointed out problems of reproducibility of the dominant metric, BLEU, at the time of publication. Nowadays, BERT-based evaluation metrics considerably outperform BLEU. In this paper, we ask whether results and claims from four recent BERT-based metrics can be reproduced. We find that reproduction of claims and results often fails because of (i) heavy undocumented preprocessing involved in the metrics, (ii) missing code and (iii) reporting weaker results for the baseline metrics. (iv) In one case, the problem stems from correlating not to human scores but to a wrong column in the csv file, inflating scores by 5 points. Motivated by the impact of preprocessing, we then conduct a second study where we examine its effects more closely (for one of the metrics). We find that preprocessing can have large effects, especially for highly inflectional languages. In this case, the effect of preprocessing may be larger than the effect of the aggregation mechanism (e.g., greedy alignment vs.\ Word Mover Distance). 
 
-Contact Pearson: Yanran Chen ([yanran.chen@stud.tu-darmstadt.de](mailto:yanran.chen@stud.tu-darmstadt.de))
+Contact persons: Yanran Chen ([yanran.chen@stud.tu-darmstadt.de](mailto:yanran.chen@stud.tu-darmstadt.de)), Steffen Eger ([steffen.eger@uni-bielefeld.de](mailto:steffen.eger@uni-bielefeld.de))
 
 If you have any questions, don’t hesitate to drop me an email!
 
